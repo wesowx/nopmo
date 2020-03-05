@@ -1,0 +1,20 @@
+.container {
+  display:flex;
+  flex-flow: column nowrap;
+  align-items: flex-end;
+  margin-right: 0;
+}
+
+.Tilt {
+  height: 150px;
+  width: 150px;
+}
+
+.icon {
+  height: 54px;
+  width: 54px;
+}
+
+.rank {
+  width: 150px
+}
