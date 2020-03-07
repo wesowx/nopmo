@@ -56,9 +56,9 @@ class Profile extends React.Component {
   render() {
     return(
       <div id='profilecard' className="ba b--black-10 br4 w-100 w-40-m w-40-l mw7 shadow-3 center ma2">
-        <fieldset className="flex ba b--white w-95 ma2 br2">
-          <legend className="tc f3 fw6 ma1 white w-30">Profile</legend>
-          <div className="dib w-20 ma2 center tc">
+        <fieldset className="ba b--white w-95 ma2 br2">
+          <legend className="tc f3 fw6 ma1 white w-30 center">Profile</legend>
+          <div className="w-20 ma2 center tc">
             <img id='profileRankImg' src=''/>
           </div>
           <div className="dib br2 ba b--white w-100 ma2 center">

@@ -48,17 +48,17 @@ class RankCard extends React.Component {
   render() {
     return(
       <div id="rankcard" className="ba b--black-10 br4 w-100 w-40-m w-40-l mw7 shadow-3 center ma2">
-        <fieldset className="flex ba b--white w-95 ma1 mh2 br2">
-          <legend className="tc f3 fw6 ma1 white w-30">Current rank</legend>
-          <div className="dib w-10 ma2 center tc">
-            <img className='rankimg' id='currentRankImg' src=''/>
+        <fieldset className="ba b--white w-95 ma1 mh2 br2">
+          <legend className="tc f3 fw6 ma1 white w-30 center">Current rank</legend>
+          <div className="dib w-100 ma2 center tc">
+            <img className='rankimg center' id='currentRankImg' src=''/>
           </div>
           <div className="dib br2 ba b--white w-100 ma1 center">
             <p className="white f4 tc ma0 b">{this.props.rank}</p>
           </div>
         </fieldset>
         <fieldset className="ba b--white w-95 ma1 mh2 br2">
-          <legend className="tc f3 fw6 ma1 white w-20">Ranks</legend>
+          <legend className="tc f3 fw6 ma1 white w-20 center">Ranks</legend>
           <div className='flex w-100 items-center'>
             <div className="dib w-10 ma2">
               <img className='rankimg' src={fapper}/>
