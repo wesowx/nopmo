@@ -7,7 +7,7 @@ const mapStatetoProps = (state) => {
   return {
     joined: state.loadUserState.joined,
     fap: state.loadUserState.fap,
-    totalTime: ((Date.now() - Date.parse(state.loadUserState.joined)) / 8.64e+7 / state.loadUserState.fap).toString()
+    totalTime: ((Date.now() - Date.parse(state.loadUserState.joined)) / 8.64e+7 / state.loadUserState.fap).toFixed(2)
   }
 }
 

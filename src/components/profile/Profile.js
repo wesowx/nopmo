@@ -14,7 +14,7 @@ const mapStatetoProps = (state) => {
     currentRank: state.loadUserState.rank,
     name: state.loadUserState.name,
     joined: new Date(state.loadUserState.joined),
-    daysPerFap: ((Date.now() - Date.parse(state.loadUserState.joined)) / 8.64e+7 / state.loadUserState.fap).toString(),
+    daysPerFap: ((Date.now() - Date.parse(state.loadUserState.joined)) / 8.64e+7 / state.loadUserState.fap).toFixed(2),
     lastFap: new Date(state.loadUserState.o)
   }
 }
