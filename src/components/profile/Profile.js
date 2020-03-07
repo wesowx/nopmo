@@ -71,10 +71,10 @@ class Profile extends React.Component {
             <p className="white f3 tc ma1 b">{`Joined: ${this.props.joined}`}</p>
           </div>
           <div className="dib br2 ba b--white w-100 ma2 center">
-            <p className="white f3 tc ma1 b">{`Last Fap(o): ${this.props.lastFap}`}</p>
+            <p className="white f3 tc ma1 b">{`Last Relapse(O): ${this.props.lastFap}`}</p>
           </div>
           <div className="dib br2 ba b--white w-100 ma2 center">
-            <p className="white f3 tc ma1 b">{`Average days-per-fap: ${this.props.daysPerFap}`}</p>
+            <p className="white f3 tc ma1 b">{`Average days clean: ${this.props.daysPerFap}`}</p>
           </div>
         </fieldset>
       </div>
