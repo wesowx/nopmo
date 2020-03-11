@@ -65,12 +65,12 @@ class Sidebar extends React.Component {
         <div className="wrapper d-flex align-items-stretch">
           <nav id="sidebar">
             <div className="custom-menu">
-              <input type="image" onClick={this.props.toggleSidebar} id="sidebarCollapse" src={right} />
+              <button onClick={this.props.toggleSidebar} id="sidebarCollapse"></button>
             </div>
             <div className="img bg-wrap text-center py-4">
               <div className="user-logo">
                 <img id='sidebaricon' src=''/>
-                <h3>{this.props.name}</h3>
+                <p>{this.props.name}</p>
               </div>
             </div>
             <ul className="list-unstyled components mb-5">

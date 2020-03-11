@@ -1,3 +1,9 @@
 #researchcard {
   position:absolute
 }
+
+@media (max-width: 700px) {
+  #researchcard {
+    position: static;
+  }
+}

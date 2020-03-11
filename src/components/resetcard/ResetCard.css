@@ -1,3 +1,9 @@
 #resetcard {
   position: absolute
 }
+
+@media (max-width: 700px) {
+  #resetcard {
+    position: static;
+  }
+}

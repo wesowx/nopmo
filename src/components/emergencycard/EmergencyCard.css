@@ -1,3 +1,10 @@
 #emergencycard {
   position: absolute
 }
+
+
+@media (max-width: 700px) {
+  #emergencycard {
+    position: static;
+  }
+}

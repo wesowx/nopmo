@@ -6,3 +6,10 @@
   height: 64px;
   width: 64px
 }
+
+
+@media (max-width: 700px) {
+  #rankcard {
+    position: static;
+  }
+}

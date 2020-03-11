@@ -30,9 +30,11 @@ class App extends React.Component {
   //   this.state = {test:'success'};
   // }
 
-  toggleSidebar = () => {
+  toggleSidebar = (e) => {
     const sidebar = document.querySelector("#sidebar");
     sidebar.classList.toggle("active");
+    const menuButton = document.querySelector(".custom-menu");
+    menuButton.classList.toggle("active");
     const others = document.querySelector('#nonsidebar');
     others.classList.toggle("sidebaractive")
   }
@@ -58,10 +60,12 @@ class App extends React.Component {
           <div id="nonsidebar">
             <PmoCounter/>
             <Profile/>
-            <RankIcon/>
-            <EmergencyButton/>
-            <ResetButton/>
-            <RedditLogo/>
+            <div id="icons">
+              <RankIcon/>
+              <EmergencyButton/>
+              <ResetButton/>
+              <RedditLogo/>
+            </div>
           </div>
         </div>
       )

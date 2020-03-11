@@ -62,7 +62,7 @@ class RankIcon extends React.Component {
       <div className="container">
         <p className="b rank white ma1 tc">{`Rank: ${this.props.currentRank}`}</p>
         <Tilt className="Tilt pa3 br-100" options={{ max : 70, perspective: 1000 }}>
-          <div onClick={(e)=>this.props.onRouteChange(e,'rankcard')} className="Tilt-inner pa0 tc">
+          <div onClick={(e)=>this.props.onRouteChange(e,'rankcard')} className="Tilt-inner pa2 tc">
             <img id="smallicon" className="icon pointer grow" src=''/>
           </div>
         </Tilt>

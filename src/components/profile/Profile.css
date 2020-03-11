@@ -1,3 +1,9 @@
 #profilecard {
   position: absolute
 }
+
+@media (max-width: 700px) {
+  #profilecard {
+    position: static;
+  }
+}
