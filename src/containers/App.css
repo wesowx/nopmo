@@ -15,11 +15,11 @@
   margin-left: 300px
 }
 
-#icons {
+/* #icons {
   display: flex;
   flex-direction: column;
   align-self: flex-end;
-}
+} */
 
 @media (max-width: 700px) {
   .sidebaractive {
@@ -45,7 +45,7 @@
     height: 70px !important;
   }
 
-  #icons {
+  /* #icons {
     flex-direction: row;
     align-items: flex-end;
     justify-content: space-between;
@@ -56,6 +56,6 @@
   #icons .icon {
     width: 28px;
     height: 28px
-  }
+  } */
 
 }

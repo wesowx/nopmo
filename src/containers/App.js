@@ -60,12 +60,10 @@ class App extends React.Component {
           <div id="nonsidebar">
             <PmoCounter/>
             <Profile/>
-            <div id="icons">
-              <RankIcon/>
-              <EmergencyButton/>
-              <ResetButton/>
-              <RedditLogo/>
-            </div>
+            <RankIcon/>
+            <EmergencyButton/>
+            <ResetButton/>
+            <RedditLogo/>
           </div>
         </div>
       )
