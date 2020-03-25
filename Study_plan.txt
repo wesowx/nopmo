@@ -1,0 +1,354 @@
+
+To-dos:
+1. Improve Nopmo
+  - Optimize CSS for firefox (done) and mobile (done)
+  - Add a relapse log (for ongoing and past streaks) section (Mood, Confidence, Motivational, Cognition,Productivity, Journal)
+    -Its own component/section (linked from reset and sidebar)
+    Setup
+      -'P/M' (orange and red dot) are entries in the log - with option for user to write-up
+      -'O' (black) ends the current log and puts it into 'past logs' section (option to write-up as well)
+      -Upon reset, first entry will be a compilation of the previous streak's P/M/O resets and write-ups
+      -Journal section
+        -User can select what day to input journal entry
+        -Mood: Emojis? Terrible, bad, neutral, content, happy, frustrated
+        -Productivity: Bad, normal, good
+        -Confidence: Low, normal, high
+        -Cogntion: Brainfog, normal, Clear
+        -Motivation:
+        -Write-up(optional)
+        -Page navigator
+  - Reroute to home upon submitting reset, once streak component done, reroute to streak
+
+2. career
+  -Add Nopmo into portfolio website [done but just replacing robofriends] (Implement JS to switch project panel (in react it would simply be a routing/display of components but for traditional web setup how?))
+  -Do up new resume [done]
+  -Send applications [doing]
+  -Portfolio webiste -> change fapper rank to hobo and include pokemon picture in pokedex screenshot
+
+
+3. CS
+  -SICP book, write notes in notebook
+
+
+
+7/3/20 (5.5 hours of productivity time)
+
+-1.5 hours for CSS optimization
+-2 hours for portfolio website, resume
+-2 hours for SICP (at night)
+
+9/3/20 (6 hours of productivity)
+
+-1.5 hour for CSS optimization(mobile) and change rank name/screenshot on portfolio?
+  -Problems
+    1. Sidebar button is behind component(unclickable), even if clickable sidebar will block
+      -Solution: if @ media (max width 700px)
+        -INACTIVE: width 100vh, height 100px, margin top -100px, (toggle button change to menu logo, flushed to right margin bottom -100px)
+        -ACTIVE: width 100vh, height 100px, margin top 0px, (toggle button margin bottom: auto/0)
+
+    2. Overlapping components
+      -Solution: if @ media (max width 700px)
+        -Change component positions to be static
+        -Change rank/Emergency/reset/reddit buttons to inline-flex
+-2.5 hours for resume crafting and cover letter
+-2 hours of SICP
+
+
+10/3/20 (7 hours of productivity)
+
+-4 hours of resume/cover letter/internship applications
+-2 hours of nopmo mobile optimization
+-1 hour of SICP
+
+
+11/3/20 (8 hours of productivity)
+
+-2 hours of mobile optimization and change rank and update portfolio website screenshot [done]
+-2 hours of nopmo improvement (journal component)
+-2 hours of SICP [1/2 done ( go home do exercises)]
+-2 hours of khanacademy/core math? [never do]
+
+
+12/3/20 (7 hours of productivity)
+
+1220 - 1420 NOPMO STREAK component
+1420 - 1440 break
+1440 - 1640 SICP
+1640 - 1700 break
+1700 - 1900 NOPMO STREAK component
+1900 - 1920 break
+1920 - 2020 khanacademy math..
+
+
+NOPMO streak component
+
+1. Current streak component
+  -Fixed "Started" entry with green dot
+  -Reset log component (P/M/O)
+    -onclick of submit button on reset component,
+      -if p checked generate log with orange dot
+      -if m checked generate log with red dot
+      -if o checked, generate log with black dot, save all relevant info from current streak into STREAKS table and re-render current streak with only fixed entry
+  -Journal log component
+  -Since both types of logs are on same chronology, have 1 resetlogsArray component inside currentstreak
+    -pass down array of reset information as props
+      -array of reset information must be comprehensive list of all resets during current streak
+        -accomplish inside reset counter action, by creating a resetlog reducer/state (e.g. if p.checked dispatch type,writeup,date) PROBLEM: states function by replacing, not incrementing.. SOLUTION: add another state 'resetlog' in initialuserstate,
+        spread operator return [...state, newObj]
+        OR
+        -accomplish by creating an array on App level, pushing {type,writeup,date} object into array when reset counter action called PROBLEM: isn't this just a pseudo-state?
+      -e.g. [{type:p, writeup: 'i fked up', date: x/x/x}, {type:p, writeup: 'i fked up', date: x/x/x}]
+    -map reset info array to logs Array, passing down data as props (e.g. write-up, color, date)
+      -function in map, return (reset log component IF log.color) return (journal log component IF log.motivation)
+    -WIPE STATE UPON O AFTER 1)UPDATING STATE AND 2)GENERATING RESET LOG COMPONENT 3)SAVING INFORMATION INTO DATABASE AS ONE ROW
+
+2. Past streaks component
+  -rows in STREAK table should have been saved from previous current STREAKS
+  -fetch entries in database, put into paststreakdata
+  -Render paststreaks array component
+    -map paststreakdata to const paststreaks array
+      -return past streak component
+
+3. Journal component
+  -Most items within are fixed, just follow layout
+  -create action for submit Journal
+    -Put in userstate reducer as well, add to the array of objects 'resetlog'
+  -submit button onclick will run action
+
+
+4. Database
+  -STREAKS table
+  -username varchar(100) unique not null primary key
+  -id serial (increment based on each username) notnull
+  -Date started string not null
+  -Date ended string not null
+  -Days Interval not null
+  -resetlog
+    -store as column?
+    OR
+    -store as two other resetlog/journallog tables
+      -resetlog table [username(foreignkey), streakid(how to link), color,date,writeup]
+      -journallog table [username(foreignkey), streakid(how to link), date, day, mood, productivity, confidence, cognition, motivation, writeup]
+
+
+
+
+13/3/20 (7 hours of productivity)
+
+1300 - 1500 NOPMO
+
+-Streak component
+-Reset counter routing after submitting (done)
+-Fix problem with pmo counter -1 upon reset (done)
+
+1530 - 1730 SICP
+
+1800 - 2000 NOPMO
+
+
+14/3/20 (4.5 hours of productivity outside, 1.5 hours of productivity at home (LIVING ROOM))
+
+4.5 hours of NOPMO streak component
+
+  Create journal component, mood/confidence/productivity/motivation/cognition selectors, write-up input field, date selector (react-flatpickr) [ACTUALLY DO WITHOUT DATEPICKER FIRST, JUST SHOW CURRENT DATE, APPEND INTO LOGS ARRAY CHRONOLOGICALLY]
+  -onclick of submit, append data into logs array
+
+  plan out schema of databases and how O is going to save data into them and clear state.
+
+1.5 hours SICP at home
+
+
+
+16/3/20 (6 hours of productivity)
+
+1230 - 530 5 hours of NOPMO and 0.5 hours of break
+
+at night 2 hours of SICP
+
+
+Nopmo
+-Problem with proposed setup (within current streak, reset and joural actions with send to state, O will save state data to database and clear state):
+  -state gets cleared after every session..... data is not persistent
+
+SOLUTION: every action will fetch database, append into the respective tables and put in state(if necessary)
+
+2 tables
+  -#1 STREAK
+  streakid (pkey)
+  username
+  streak number (for each user)
+  day started
+  day ended
+  days?
+
+  -#2 LOGS (split RESETLOGS AND JOURNAL LOGS INTO 2 TABLES OR KEEP AS 1 TABLE AND HAVE NULL COLUMNS)
+  streakid (fkey)
+  log number (counter to track chronology of logs in each streak?)
+  type: reset/journal
+  date (string)
+    -columns for resetlog
+      color
+      writeup
+    -columns for journallog
+      Mood
+      Confidence
+      Cognition
+      Motivation
+      productivity
+      writeup
+
+
+----SETUP---
+
+REGISTER ACTIONS add-on
+-Upon register, will create streak entry, day ended and days is left empty (dispatch streakid to loaduserstate)
+
+
+RESETCARD ACTIONS
+  -Upon submission of O
+    -initialize new entry in logs table
+      -streakid (currentstreakid in load userstate)
+      -type: reset
+      -typeOfRelapse: o
+      -color: black
+      -Date: new Date()
+    -input into STREAKS table day ended and days data (select field through username & latest field? OR select field by having a counter in the users table (curent streak id)) [TO END THE CURENT STREAK] (TRY: currentstreakID in loadUserState)
+    -initialize new entry in streaks table
+    -modify currentstreakID in USERS table and subsequently loadUserState (should already be done by submitreset action)
+  -Upon submission of P
+    -initialize new entry in logs table
+      -streakid (currentstreakid in load userstate)
+      -type: reset
+      -typeOfRelapse: p
+      -color: orange
+      -Date: new Date()
+-  -Upon submission of M
+    -initialize new entry in logs table
+      -streakid (currentstreakid in load userstate)
+      -type: reset
+      -typeOfRelapse: m
+      -color: red
+      -Date: new Date()
+
+JOURNAl ACTIONS
+  -Upon submission of journal
+    -initialize new entry in logs table
+      -streakid (currentstreakid in load userstate)
+      -type: journal
+      -Mood: req.body.___
+      -Confidence: req.body.___
+      -Cognition: req.body.___
+      -Motivation: req.body.___
+      -productivity: req.body.___
+      -writeup: req.body.___
+      -Date: new Date()
+
+Rendering components
+-Select
+
+
+***PUT EVERYTHING ON HOLD AND PREPARE FOR VISA TECHNICAL ASSESSMENT
+
+
+*New set of goals:
+-Finish nopmo project
+-Build Java application & get fafmilair with Java/OOP
+-Spend more time on CS theory (especially data struc/algo)
+  -Finish first 3 chaps of SICP
+  -Data strutures and algoritms while doing leetcode
+
+19/03/20 (6 hours of productivity)
+
+-nopmo @ tamp until batt dies
+-SICP
+-nopmo @ home
+-Data structures and algorithms
+
+
+20/03/20 (7 hours of productivity)
+
+1245 - 1430 nopmo
+
+1500 - 1700 SICP
+
+1730 - 1900 NOPMO
+
+2100 - 0000 stream/guitar/algo (study 40min play 20min)
+
+
+NOPMO to-dos (TRY TO FINISH COMPONENT TODAY!!!)
+  -finish database schema
+  -actions and reducers
+  -build out and render components, test functionality
+
+
+
+24/03/20 (7 hours of productivity)
+
+4 hours at tampines : NOPMO
+
+for Streak component, 3 sub component (current streak, past streaks, journal), default render is current streak...
+
+
+25/03/20 (7 hours of productivity)
+
+5 hours at tampines
+  -4 hours nopmo, 1 hour SICP
+
+    -NOPMO TODO
+     -database schema and actions to submit journal and reset information are already created, now left with building out components
+      -Streak component (default is current streak sub-component)
+        -Current streak subcomponent
+          -onmount
+            1. [ACTION] fetch database, search for:
+              i. currentstreak (with loaduserstate.currenstreakid) [OR you can just use o as date started]
+                -Date Started
+              ii. logs (with currentstreakid)
+                -dispatch into state an array of objects (loadcurrentStreak reducer)
+                  -currentstreak {
+                  startdate: x/x/x,
+                  days: x,
+                  logs: [{...},{...}]
+                  }
+          -Render
+            -mapstatetoprops
+            -<ResetAndJournalLogList/>
+              
+
+        -Past streaks components
+          -Routing
+            -mapstatetoprops: pastStreakmode.route
+            -if list , render <PastStreakList/>
+              [RENDER] <PastStreakList/>
+                -map getstate.allPastStreaks.paststreaks
+                  -return <miniPaststreak/> component with {props streaknumber, startdate, enddate}
+            -if zoom, render <ResetAndJournalLogList/>
+              [RENDER] <ResetAndJournalLogList/>
+                -mapstatetoprops: loadPastStreak.paststreak
+
+          -List of clickable record of all past STREAKS [paststreakmode: list] (initialRoute = 'list')
+            -onmount
+              1. [ACTION] fetch database, search for all past streaks with username, dispatch in state an array of objects (allPastStreaks reducer)
+                  -allPastStreaks {
+                    paststreaks: [{streaknumber, startdate, enddate}]
+                  }
+
+
+          -Individual streak rendering [paststreakmode: zoom]
+            -onclick
+              1. [ACTION] fetch Database and dispatch into state (loadPastStreak reducer)
+                  -paststreak {
+                    streaknumber: 1,
+                    startdate: x/x/x,
+                    enddate: x/x/x,
+                    logs: [{...},{...}]
+                  }
+
+
+
+        -Journal component (already done);
+
+
+
+2 hours at home
+  -algorithms and data structures
