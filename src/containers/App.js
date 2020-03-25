@@ -14,6 +14,7 @@ import RankCard from '../components/rankcard/RankCard';
 import Profile from '../components/profile/Profile';
 import Research from '../components/research/Research';
 import Motivation from '../components/motivation/Motivation';
+import Journal from '../components/journal/Journal';
 import {connect} from 'react-redux';
 
 const mapStatetoProps = (state) => {
@@ -59,7 +60,7 @@ class App extends React.Component {
           <Sidebar toggleSidebar={this.toggleSidebar}/>
           <div id="nonsidebar">
             <PmoCounter/>
-            <Profile/>
+            <Journal/>
             <RankIcon/>
             <EmergencyButton/>
             <ResetButton/>

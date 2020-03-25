@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider, connect } from 'react-redux';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
-import { changeUsernameState, changePasswordState, changeRegisterNameState, changeRegisterUsernameState, changeRegisterPasswordState, loadUserState, changeRoute } from './reducers.js';
+import { changeSigninState, changeRegisterState, loadUserState, changeRoute, updateStreakLogs } from './reducers.js';
 import './index.css';
 import App from './containers/App';
 import * as serviceWorker from './serviceWorker';
@@ -12,7 +12,7 @@ import { createLogger } from 'redux-logger';
 import thunkMiddleware from 'redux-thunk';
 
 const logger = createLogger();
-const rootReducer = combineReducers({changeUsernameState,changePasswordState,changeRegisterNameState,changeRegisterUsernameState,changeRegisterPasswordState,loadUserState,changeRoute});
+const rootReducer = combineReducers({changeSigninState,changeRegisterState,loadUserState,changeRoute,updateStreakLogs});
 export const store = createStore(rootReducer, applyMiddleware(thunkMiddleware,logger));
 
 ReactDOM.render(

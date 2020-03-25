@@ -37,9 +37,9 @@ class PmoCounter extends React.Component {
     let mCounter = document.querySelector("#mCounter");
     let oCounter = document.querySelector("#oCounter");
 
-    let pDays = Math.floor((new Date(new Date().getTime() +  1000) - this.props.p) * getDay);
-    let mDays = Math.floor((new Date(new Date().getTime() +  1000) - this.props.m) * getDay);
-    let oDays = Math.floor((new Date(new Date().getTime() +  1000) - this.props.o) * getDay);
+    let pDays = Math.floor((new Date(new Date().getTime() +  2000) - this.props.p) * getDay);
+    let mDays = Math.floor((new Date(new Date().getTime() +  2000) - this.props.m) * getDay);
+    let oDays = Math.floor((new Date(new Date().getTime() +  2000) - this.props.o) * getDay);
 
     console.log(this.props.p);
     console.log('testPMO');

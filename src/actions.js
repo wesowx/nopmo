@@ -3,6 +3,7 @@ import {LOAD_USER, CREATE_USER} from './constants.js';
 import {CHANGE_ROUTE} from './constants.js';
 import {RESET_COUNTER} from './constants.js';
 import {UPDATE_RANK} from './constants.js';
+import {RESET_LOG,JOURNAL_LOG} from './constants.js';
 
 
 
@@ -53,8 +54,8 @@ export const submitSignIn = () => (dispatch, getState) => {
     method: 'post',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({
-      username: getState().changeUsernameState.signInUsername,
-      password: getState().changePasswordState.signInPassword
+      username: getState().changeSigninState.signInUsername,
+      password: getState().changeSigninState.signInPassword
     })
   })
   .then(response => response.json())
@@ -74,9 +75,9 @@ export const submitRegister = () => (dispatch, getState) => {
     method: 'post',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({
-      name: getState().changeRegisterNameState.registerName,
-      username: getState().changeRegisterUsernameState.registerUsername,
-      password: getState().changeRegisterPasswordState.registerPassword
+      name: getState().changeRegisterState.registerName,
+      username: getState().changeRegisterState.registerUsername,
+      password: getState().changeRegisterState.registerPassword
     })
   })
   .then(response => response.json())
@@ -113,11 +114,14 @@ export const resetCounter = () => (dispatch,getState) => {
       p: pBox.checked,
       m: mBox.checked,
       o: oBox.checked,
-      username: getState().loadUserState.username
+      username: getState().loadUserState.username,
+      currentstreakid: getState().loadUserState.currentstreakid
     })
   })
   .then(res => res.json())
   .then(user => dispatch({type:RESET_COUNTER, payload:user}))
+
+  dispatch({type:CHANGE_ROUTE, payload:'home'});
 }
 
 
@@ -134,4 +138,56 @@ export const updateRank = (newrank) => (dispatch, getState) => {
   })
   .then(res => res.json())
   .then(user => dispatch({type:UPDATE_RANK, payload:user}))
+}
+
+
+// ACTION CREATOR TO UPDATE STREAKLOG STATE WITH JOURNAL LOG (for this state, send to state first THEN when streak ends fetch server to update streak table in database)
+
+export const submitJournal = () => (dispatch, getState) => {
+  const moodValue = document.querySelector('#Mood').value;
+  const confidenceValue = document.querySelector('#Confidence').value;
+  const cognitionValue = document.querySelector('#Cognition').value;
+  const motivationValue = document.querySelector('#Motivation').value;
+  const productivityValue = document.querySelector('#Productivity').value;
+  const writeupValue = document.querySelector('#writeup').value;
+
+
+  if (moodValue.length && confidenceValue.length && cognitionValue.length && motivationValue.length && productivityValue.length) {
+    fetch("https://immense-garden-67456.herokuapp.com/journal", {
+      method: 'post',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        username: getState().loadUserState.username,
+        currentstreakid: getState().loadUserState.currentstreakid,
+        mood: moodValue,
+        confidence: confidenceValue,
+        cognition: cognitionValue,
+        motivation: motivationValue,
+        productivity: productivityValue,
+        writeup: writeupValue
+      })
+    })
+    .then(res => res.json())
+    .then(user => alert(user))
+  } else {
+    alert('Please fill up the indicators, you can leave write-up blank')
+  }
+
+}
+
+// ACTION CREATOR TO FETCH CURRENTSTREAK AND DISPATCH TO state
+
+export const loadCurrentStreak = () => (dispatch, getState) => {
+  fetch("https://immense-garden-67456.herokuapp.com/currentstreak", {
+    method: 'post',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      currentstreakid: getState().loadUserState.currentstreakid
+    })
+  })
+  .then(res => res.json())
+  .then(streak => dispatch({
+    type: CURRENT_STREAK,
+    payload: streak
+  }))
 }

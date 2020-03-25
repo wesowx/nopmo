@@ -13,3 +13,7 @@ export const CHANGE_ROUTE = 'CHANGE_ROUTE';
 export const RESET_COUNTER = 'RESET_COUNTER';
 
 export const UPDATE_RANK = 'UPDATE_RANK';
+
+export const CURRENT_STREAK = 'CURRENT_STREAK';
+
+export const PAST_STREAKS ='PAST_STREAKS';

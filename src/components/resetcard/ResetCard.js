@@ -15,7 +15,7 @@ const mapDispatchtoProps = (dispatch) => {
   return {
     onResetCounter: (e) => {
       e.preventDefault();
-      dispatch(resetCounter())
+      dispatch(resetCounter());
     }
   }
 }

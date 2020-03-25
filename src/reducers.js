@@ -3,6 +3,8 @@ import {LOAD_USER, CREATE_USER} from './constants.js';
 import {CHANGE_ROUTE} from './constants.js';
 import {RESET_COUNTER} from './constants.js';
 import {UPDATE_RANK} from './constants.js';
+import {RESET_LOG, JOURNAL_LOG} from './constants.js';
+
 
 
 
@@ -13,23 +15,25 @@ const initialSigninState = {
   signInPassword: ''
 }
 
-export const changeUsernameState = (state=initialSigninState, action={}) => {
+export const changeSigninState = (state=initialSigninState, action={}) => {
   switch(action.type) {
     case USERNAME_FIELD:
       return Object.assign({},state,{signInUsername:action.payload});
-    default:
-      return state;
-  }
-}
-
-export const changePasswordState = (state=initialSigninState, action={}) => {
-  switch(action.type) {
     case PASSWORD_FIELD:
       return Object.assign({},state,{signInPassword:action.payload});
     default:
       return state;
   }
 }
+
+// export const changePasswordState = (state=initialSigninState, action={}) => {
+//   switch(action.type) {
+//     case PASSWORD_FIELD:
+//       return Object.assign({},state,{signInPassword:action.payload});
+//     default:
+//       return state;
+//   }
+// }
 
 // REDUCERS FOR REGISTER COMPONENT
 
@@ -39,32 +43,36 @@ const initialRegisterState = {
   registerPassword: ''
 }
 
-export const changeRegisterUsernameState = (state=initialRegisterState, action={}) => {
+export const changeRegisterState = (state=initialRegisterState, action={}) => {
   switch(action.type) {
     case USERNAME_FIELD:
       return Object.assign({},state,{registerUsername:action.payload});
-    default:
-      return state;
-  }
-}
-
-export const changeRegisterNameState = (state=initialRegisterState, action={}) => {
-  switch(action.type) {
     case NAME_FIELD:
       return Object.assign({},state,{registerName:action.payload});
-    default:
-      return state;
-  }
-}
-
-export const changeRegisterPasswordState = (state=initialRegisterState, action={}) => {
-  switch(action.type) {
     case PASSWORD_FIELD:
       return Object.assign({},state,{registerPassword:action.payload});
     default:
       return state;
   }
 }
+
+// export const changeRegisterNameState = (state=initialRegisterState, action={}) => {
+//   switch(action.type) {
+//     case NAME_FIELD:
+//       return Object.assign({},state,{registerName:action.payload});
+//     default:
+//       return state;
+//   }
+// }
+//
+// export const changeRegisterPasswordState = (state=initialRegisterState, action={}) => {
+//   switch(action.type) {
+//     case PASSWORD_FIELD:
+//       return Object.assign({},state,{registerPassword:action.payload});
+//     default:
+//       return state;
+//   }
+// }
 
 // REDUCER FOR LOADING USER state
 
@@ -83,12 +91,12 @@ export const loadUserState = (state=initialUserState, action={}) => {
   switch(action.type) {
     case LOAD_USER:
       return Object.assign({},state,{id:action.payload.id, username:action.payload.username, name:action.payload.name,
-        p:action.payload.p, m:action.payload.m, o:action.payload.o, fap:action.payload.fap, joined:action.payload.joined, rank:action.payload.rank});
+        p:action.payload.p, m:action.payload.m, o:action.payload.o, fap:action.payload.fap, joined:action.payload.joined, rank:action.payload.rank, currentstreakid:action.payload.currentstreakid});
     case CREATE_USER:
       return Object.assign({},state,{id:action.payload.id, username:action.payload.username, name:action.payload.name,
-        p:action.payload.p, m:action.payload.m, o:action.payload.o, fap:action.payload.fap, joined:action.payload.joined, rank:action.payload.rank});
+        p:action.payload.p, m:action.payload.m, o:action.payload.o, fap:action.payload.fap, joined:action.payload.joined, rank:action.payload.rank, currentstreakid:action.payload.currentstreakid});
     case RESET_COUNTER:
-      return Object.assign({},state,{p:action.payload.p, m:action.payload.m, o:action.payload.o, fap:action.payload.fap});
+      return Object.assign({},state,{p:action.payload.p, m:action.payload.m, o:action.payload.o, fap:action.payload.fap, currentstreakid: action.payload.currentstreakid});
     case UPDATE_RANK:
       return Object.assign({},state,{rank: action.payload.rank});
     default:
@@ -109,5 +117,40 @@ export const changeRoute = (state=initialRoute, action={}) => {
       return Object.assign({},state,{route:action.payload});
     default:
       return state
+  }
+}
+
+// REDUCER TO STORE RESET AND JOURNAL LOGS
+
+const initialStreakLogs = []
+
+export const updateStreakLogs = (state=initialStreakLogs,action={}) => {
+  switch(action.type) {
+    case RESET_LOG:
+      return [
+        ...state,
+        action.payload
+      ]
+    case JOURNAL_LOG:
+      return [
+        ...state,
+        action.payload
+      ]
+    default:
+      return state
+  }
+}
+
+//REDUCER TO STORE CURRENT STREAK
+
+const initialCurrentStreak = {
+  logs: []
+}
+
+
+export const loadCurrentStreak = (state=initialCurrentStreak,action={}) => {
+  switch(action.type) {
+    case CURRENT_STREAK:
+      return Object.assign({},state,{logs:action.payload})
   }
 }
