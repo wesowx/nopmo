@@ -16,6 +16,7 @@ import Research from '../components/research/Research';
 import Motivation from '../components/motivation/Motivation';
 import Journal from '../components/journal/Journal';
 import Streak from '../components/streak/Streak';
+import Footer from '../components/footer/Footer'
 import {connect} from 'react-redux';
 
 const mapStatetoProps = (state) => {
@@ -47,12 +48,14 @@ class App extends React.Component {
       return(
         <div id="app">
           <SignIn/>
+          <Footer/>
         </div>
       );
     } else if (this.props.route === 'register') {
       return(
         <div id="app">
           <Register/>
+          <Footer/>
         </div>
       );
     } else if (this.props.route === 'home') {
