@@ -1,0 +1,9 @@
+#streakcard {
+  position: absolute
+}
+
+@media (max-width: 700px) {
+  #streakcard {
+    position: static;
+  }
+}

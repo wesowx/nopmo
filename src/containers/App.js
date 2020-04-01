@@ -15,6 +15,7 @@ import Profile from '../components/profile/Profile';
 import Research from '../components/research/Research';
 import Motivation from '../components/motivation/Motivation';
 import Journal from '../components/journal/Journal';
+import Streak from '../components/streak/Streak';
 import {connect} from 'react-redux';
 
 const mapStatetoProps = (state) => {
@@ -60,7 +61,7 @@ class App extends React.Component {
           <Sidebar toggleSidebar={this.toggleSidebar}/>
           <div id="nonsidebar">
             <PmoCounter/>
-            <Journal/>
+            <Profile/>
             <RankIcon/>
             <EmergencyButton/>
             <ResetButton/>
@@ -131,6 +132,20 @@ class App extends React.Component {
           <div id="nonsidebar">
             <PmoCounter/>
             <Motivation/>
+            <RankIcon/>
+            <EmergencyButton/>
+            <ResetButton/>
+            <RedditLogo/>
+          </div>
+        </div>
+      );
+    } else if (this.props.route === 'streak') {
+      return(
+        <div id="app">
+          <Sidebar toggleSidebar={this.toggleSidebar}/>
+          <div id="nonsidebar">
+            <PmoCounter/>
+            <Streak/>
             <RankIcon/>
             <EmergencyButton/>
             <ResetButton/>

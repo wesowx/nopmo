@@ -1,0 +1,9 @@
+@media (max-width: 700px) {
+  #paststarted {
+    font-size: 10px
+  }
+
+  #pastended {
+    font-size: 10px
+  }
+}

@@ -84,6 +84,9 @@ class Sidebar extends React.Component {
                 <a onClick={(e)=>this.props.onRouteChange(e,'research')} href=""><span className="fa fa-trophy mr-3"></span> Research</a>
               </li>
               <li>
+                <a onClick={(e)=>this.props.onRouteChange(e,'streak')} href=""><span className="fa fa-cog mr-3"></span> Streaks</a>
+              </li>
+              <li>
                 <a onClick={(e)=>this.props.onRouteChange(e,'signIn')} href=""><span className="fa fa-cog mr-3"></span> Sign out</a>
               </li>
             </ul>

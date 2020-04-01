@@ -16,4 +16,12 @@ export const UPDATE_RANK = 'UPDATE_RANK';
 
 export const CURRENT_STREAK = 'CURRENT_STREAK';
 
-export const PAST_STREAKS ='PAST_STREAKS';
+export const PAST_STREAK ='PAST_STREAK';
+
+export const PAST_STREAK_LIST ='PAST_STREAK_LIST';
+
+export const STREAK_MODE = 'STREAK_MODE';
+
+export const PAST_STREAK_MODE = 'PAST_STREAK_MODE';
+
+export const PAST_STREAK_INFO = 'PAST_STREAK_INFO';

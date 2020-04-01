@@ -313,7 +313,7 @@ for Streak component, 3 sub component (current streak, past streaks, journal), d
           -Render
             -mapstatetoprops
             -<ResetAndJournalLogList/>
-              
+
 
         -Past streaks components
           -Routing
@@ -322,7 +322,7 @@ for Streak component, 3 sub component (current streak, past streaks, journal), d
               [RENDER] <PastStreakList/>
                 -map getstate.allPastStreaks.paststreaks
                   -return <miniPaststreak/> component with {props streaknumber, startdate, enddate}
-            -if zoom, render <ResetAndJournalLogList/>
+            -if zoom, render <PastStreak/> -> <ResetAndJournalLogList/>
               [RENDER] <ResetAndJournalLogList/>
                 -mapstatetoprops: loadPastStreak.paststreak
 
@@ -334,7 +334,7 @@ for Streak component, 3 sub component (current streak, past streaks, journal), d
                   }
 
 
-          -Individual streak rendering [paststreakmode: zoom]
+          -Individual streak rendering [paststreakmode: zoom] **(include a back button to navigate into list)
             -onclick
               1. [ACTION] fetch Database and dispatch into state (loadPastStreak reducer)
                   -paststreak {
@@ -352,3 +352,116 @@ for Streak component, 3 sub component (current streak, past streaks, journal), d
 
 2 hours at home
   -algorithms and data structures
+
+
+
+27/03/2020 (7 hours of productivity)
+
+[done] 4 hours nopmo
+
+1.5 hours SICP
+
+1.5 hours nand2tetris
+
+30 mins - 1 hour nopmo currentstreak finishup
+  -Started DATE
+  -journal log day bug
+  -scroll
+
+
+28/3/20 (2 hours of productivity)
+
+12  - 5 nopmo [4 hours]
+-Current streak
+  -Started DATE
+  -journal log day bug
+  -scroll
+-Past streaks [ALMOST DONE]
+  -CURRENTLY STUCK AT ONCLICK -> FETCH PASTSTREAK LOGS (HOW TO DYNAMICALLY PUT SELECTED PASTSTREAKID INTO REQ.BODY?)
+    -Idea: 2 step process
+      Step 1: create action to dispatch selected paststreakid into loaduserstate
+      Step 2: fetch with getstate.loaduserstate.paststreakid
+    -Idea: 1 step process (TRY THIS FIRST)
+      -SOMEHOW put in req.body of fetch, the paststreakid, create variable upon
+      render of pastsreaklistitem, put variable in req.body (MOST LIKELY WONT WORK AS ACTION DOESNT INTERACT WITH THE COMPONENTS LIKE THAT, SCOPE OF VARIABLE CREATED...)
+-Journal (beautify write-up / others)
+-Streaks component (combine and set up routing) [DONE]
+
+530 - 630 [1 hour]
+SICP
+
+at night [2 hours]
+Twitch/nand2tetris
+
+
+
+30.3.20 / 31.3.20 (7 hours of productivity)
+
+T1
+-3 HOURS Nopmo
+-2 HOURS SICP
+
+home
+-2 HOURS ALGOO
+
+NOPMO TO-dos
+
+-PAST STREAKS [done]
+  -COMPONENTS AND ROUTING [DONE]
+  -[done] bug: when click into current streak and click back to past streaks it loads currentstreak info.. (solution: reset paststreakmode to list upon clicking past streaks)
+  -[done] streaK : NAN, started/ended: UNIVERSAL TIME, days: empty
+
+-CURRENT streaK [done]
+  -[done] STARTED: UNIVERSAL TIME
+
+-Journal log [done]
+  - indicators put /10
+  - change method to variable in component, use render to calculate and render instead of componentdidupdate
+  - create duplicate for paststreak (also applies for resetandjournalloglist)
+
+-Journal [done]
+  -beautify (writeup font size)
+  -currently user is still able to type >10 in indicator input
+  -Day is empty
+
+-streaK [done]
+  -Journal component is OUTSIDE of streaK
+  -position: absolute
+  -scroll:
+
+-css
+  -currentstreak /paststreakzoom : started/ended font size smaller @media <700px
+  -Indicators split into 2lines @ media <700px
+  -Nav bar: either increase height size or squeeze menu items into 1 line
+
+-reddit log-in api
+
+
+1/4/2020 (7 hours of productivity)
+
+T1 (5 HOURS)
+  -2 hours NOPMO
+  -2 hours cS
+  -1 hour nopmo
+
+HOME (2 hours)
+  -2 hours CS
+
+
+To-dos
+
+NoPMO
+-[DONE]Journal input - make it so user can shift enter?
+-[DONE]css
+  -currentstreak /paststreakzoom : started/ended font size smaller @media <700px
+  -Indicators split into 2lines @ media <700px
+  -Nav bar: either increase height size or squeeze menu items into 1 line
+
+-reddit log-in api ?
+
+-Create link to your github at bottom right of page, always rendered!
+
+CS
+-Decide between HTDP and Intro to java programming
+-Start on it
+-Data structure/Algo when you're home

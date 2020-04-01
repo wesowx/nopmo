@@ -3,7 +3,7 @@ import {LOAD_USER, CREATE_USER} from './constants.js';
 import {CHANGE_ROUTE} from './constants.js';
 import {RESET_COUNTER} from './constants.js';
 import {UPDATE_RANK} from './constants.js';
-import {RESET_LOG, JOURNAL_LOG} from './constants.js';
+import {CURRENT_STREAK, PAST_STREAK, PAST_STREAK_LIST, STREAK_MODE, PAST_STREAK_MODE, PAST_STREAK_INFO} from './constants.js';
 
 
 
@@ -26,14 +26,7 @@ export const changeSigninState = (state=initialSigninState, action={}) => {
   }
 }
 
-// export const changePasswordState = (state=initialSigninState, action={}) => {
-//   switch(action.type) {
-//     case PASSWORD_FIELD:
-//       return Object.assign({},state,{signInPassword:action.payload});
-//     default:
-//       return state;
-//   }
-// }
+
 
 // REDUCERS FOR REGISTER COMPONENT
 
@@ -56,23 +49,7 @@ export const changeRegisterState = (state=initialRegisterState, action={}) => {
   }
 }
 
-// export const changeRegisterNameState = (state=initialRegisterState, action={}) => {
-//   switch(action.type) {
-//     case NAME_FIELD:
-//       return Object.assign({},state,{registerName:action.payload});
-//     default:
-//       return state;
-//   }
-// }
-//
-// export const changeRegisterPasswordState = (state=initialRegisterState, action={}) => {
-//   switch(action.type) {
-//     case PASSWORD_FIELD:
-//       return Object.assign({},state,{registerPassword:action.payload});
-//     default:
-//       return state;
-//   }
-// }
+
 
 // REDUCER FOR LOADING USER state
 
@@ -107,7 +84,9 @@ export const loadUserState = (state=initialUserState, action={}) => {
 // REDUCER TO CHANGE Routes
 
 const initialRoute = {
-  route: 'signIn'
+  route: 'signIn',
+  streakroute: 'currentStreak',
+  paststreakroute: 'list'
 }
 
 
@@ -115,42 +94,67 @@ export const changeRoute = (state=initialRoute, action={}) => {
   switch(action.type) {
     case CHANGE_ROUTE:
       return Object.assign({},state,{route:action.payload});
+    case STREAK_MODE:
+      return Object.assign({},state,{streakroute:action.payload});
+    case PAST_STREAK_MODE:
+      return Object.assign({},state,{paststreakroute:action.payload});
     default:
       return state
   }
 }
 
-// REDUCER TO STORE RESET AND JOURNAL LOGS
+//REDUCER TO STORE CURRENT OR PAST STREAK
 
-const initialStreakLogs = []
-
-export const updateStreakLogs = (state=initialStreakLogs,action={}) => {
-  switch(action.type) {
-    case RESET_LOG:
-      return [
-        ...state,
-        action.payload
-      ]
-    case JOURNAL_LOG:
-      return [
-        ...state,
-        action.payload
-      ]
-    default:
-      return state
-  }
-}
-
-//REDUCER TO STORE CURRENT STREAK
-
-const initialCurrentStreak = {
+const initialStreak = {
+  streakinfo: '',
   logs: []
 }
 
 
-export const loadCurrentStreak = (state=initialCurrentStreak,action={}) => {
+export const loadStreak = (state=initialStreak,action={}) => {
   switch(action.type) {
     case CURRENT_STREAK:
-      return Object.assign({},state,{logs:action.payload})
+      return Object.assign({},state,{logs:action.payload});
+    case PAST_STREAK:
+      return Object.assign({},state,{logs:action.payload});
+    case PAST_STREAK_INFO:
+      return Object.assign({},state,{streakinfo:action.payload});
+    default:
+      return state
+  }
+}
+
+
+//REDUCER TO STORE PAST STREAK LIST
+
+const initialPastStreakList = {
+  paststreaks: []
+}
+
+export const loadPastStreakList = (state=initialPastStreakList,action={}) => {
+  switch(action.type) {
+    case PAST_STREAK_LIST:
+    return Object.assign({},state,{paststreaks:action.payload});
+  default:
+    return state
+  }
+}
+
+
+
+//REDUCER TO STORE PAST STREAK MODE (redundant)
+
+
+const initialMode = {
+  mode: 'currentStreak'
+}
+
+
+export const streakMode = (state=initialMode, action={}) => {
+  switch(action.type) {
+    case STREAK_MODE:
+      return Object.assign({},state,{mode:action.payload});
+    default:
+      return state
   }
 }

@@ -3,7 +3,7 @@ import {LOAD_USER, CREATE_USER} from './constants.js';
 import {CHANGE_ROUTE} from './constants.js';
 import {RESET_COUNTER} from './constants.js';
 import {UPDATE_RANK} from './constants.js';
-import {RESET_LOG,JOURNAL_LOG} from './constants.js';
+import {CURRENT_STREAK, PAST_STREAK, PAST_STREAK_LIST, STREAK_MODE, PAST_STREAK_MODE, PAST_STREAK_INFO} from './constants.js';
 
 
 
@@ -186,8 +186,72 @@ export const loadCurrentStreak = () => (dispatch, getState) => {
     })
   })
   .then(res => res.json())
-  .then(streak => dispatch({
-    type: CURRENT_STREAK,
-    payload: streak
-  }))
+  .then(streak => {
+    console.log(streak);
+    dispatch({
+    type:CURRENT_STREAK,
+    payload:streak
+  })})
+}
+
+// ACTION CREATOR TO FETCH ALL PAST STREAKS AND DISPATCH TO STATE
+
+export const loadAllPastStreaks = () => (dispatch, getState) => {
+
+  fetch("https://immense-garden-67456.herokuapp.com/paststreaklist", {
+    method: 'post',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      username: getState().loadUserState.username
+    })
+  })
+  .then(res => res.json())
+  .then(streaklist => {
+    console.log(streaklist);
+    dispatch({
+      type:PAST_STREAK_LIST,
+      payload:streaklist
+    })
+  })
+
+}
+
+//ACTION CREATOR TO LOAD PAST STREAK
+
+
+export const loadPastStreak = (paststreakid,start,end) => (dispatch) => {
+  fetch("https://immense-garden-67456.herokuapp.com/paststreak", {
+    method: 'post',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      paststreakid: paststreakid
+    })
+  })
+  .then(res => res.json())
+  .then(streak => {
+    console.log(streak);
+    dispatch({
+    type:PAST_STREAK,
+    payload:streak
+  })})
+
+  dispatch({type:PAST_STREAK_INFO, payload:{startdate:start, enddate:end}});
+}
+
+//ACTION CREATOR TO CHANGE STREAK mode
+
+export const changeStreakMode = (mode) => {
+  return {
+    type: STREAK_MODE,
+    payload: mode
+  }
+}
+
+//ACTION CREATOR TO CHANGE PAST STREAK ROUTE
+
+export const changePastStreakMode = (mode) => {
+  return {
+    type: PAST_STREAK_MODE,
+    payload: mode
+  }
 }

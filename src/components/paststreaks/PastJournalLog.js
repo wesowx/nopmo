@@ -3,18 +3,12 @@ import {connect} from 'react-redux';
 import {store} from '../../index.js';
 
 
-const mapStatetoProps = (state) => {
-  return {
-    lastFap: new Date(store.getState().loadUserState.o).getTime()
-  }
-}
-
-class JournalLog extends React.Component {
+class PastJournalLog extends React.Component {
 
   render() {
     const getDay = 1 / 8.64e+7;
 
-    const logDay = Math.floor((this.props.date - this.props.lastFap) * getDay);
+    const logDay = Math.floor((this.props.date - this.props.startdate) * getDay);
 
 
     return(
@@ -40,4 +34,4 @@ class JournalLog extends React.Component {
   }
 }
 
-export default connect(mapStatetoProps)(JournalLog);
+export default PastJournalLog;

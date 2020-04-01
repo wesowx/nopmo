@@ -5,7 +5,9 @@ import {submitJournal} from '../../actions.js';
 
 
 const mapStatetoProps = (state) => {
-  return state
+  return {
+    lastFap: new Date(state.loadUserState.o)
+  }
 }
 
 const mapDispatchtoProps = (dispatch) => {
@@ -18,6 +20,11 @@ const mapDispatchtoProps = (dispatch) => {
 
 class Journal extends React.Component {
   render() {
+
+    const getDay = 1 / 8.64e+7;
+
+    const lastFap = Math.floor((new Date() - this.props.lastFap) * getDay);
+
     return(
       <div id='journalcard' className="ba b--black-10 br4 w-100 w-40-m w-40-l mw7 shadow-3 center ma2">
         <fieldset className="ba b--white w-95 ma1 mh2 br2">
@@ -27,7 +34,7 @@ class Journal extends React.Component {
               <p className='white f4'>{`Current Date: ${new Date()}`}</p>
             </div>
             <div className="dib br2 ba b--white w-30 ma2">
-              <p className="white f6 ma1">{`Day:`}</p>
+              <p className="white f6 ma1">Day: {lastFap}</p>
             </div>
           </div>
           <div className='flex w-100 items-center'>
@@ -59,7 +66,7 @@ class Journal extends React.Component {
               </div>
             </div>
             <div id='writeupwrapper' className='w-50 h5 ma2'>
-              <input className='w-100' type='text' id='writeup' name='writeup' placeholder='Enter write-up' />
+              <textarea className='w-100 f6' type='text' id='writeup' name='writeup' placeholder='Enter optional write-up' />
             </div>
           </div>
           <div className="mt1 tc">
